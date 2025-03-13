@@ -9,12 +9,12 @@ class CsController extends Controller
 {
     public function index()
     {
-        $user1s = User1::all();
+        $cs = Cs::all();
 
         return response()->json([
             'status' => 200,
             'message' => 'Users retrieved succesfully',
-            'data' => $user1s
+            'data' => $cs
         ], 200);
     }
 
@@ -26,20 +26,20 @@ class CsController extends Controller
             'contactnumber' => 'required|string',
         ]);
 
-        $user1s = User1::create($request->all());
+        $cs = Cs::create($request->all());
 
         return response()->json([
             'status' => 201,
             'message' => 'User created succesfully',
-            'data' => $user1s
+            'data' => $cs
         ], 201);
     }
 
     public function show($id)
     {
-        $user1s = User1::find($id);
+        $cs = Cs::find($id);
 
-        if (!$user1s) {
+        if (!$cs) {
             return response()->json([
                 'status' => 404,
                 'message' => 'User not found',
@@ -50,15 +50,15 @@ class CsController extends Controller
         return response()->json([
             'status' => 200,
             'message' => 'User retrieved succesfully',
-            'data' => $user1s
+            'data' => $cs
         ], 200);
     }
 
     public function update(Request $request, $id)
     {
-        $user1s = User1::find($id);
+        $cs = Cs::find($id);
 
-        if(!$user1s) {
+        if(!$cs) {
             return response()->json([
                 'status' => 404,
                 'message' => 'User not found',
@@ -71,20 +71,20 @@ class CsController extends Controller
             'contactperson' => 'required|string',
             'contactnumber' => 'required|string',
         ]);
-        $user1s->update($request->all());
+        $cs->update($request->all());
 
         return response()->json([
             'status' => 200,
             'message' => 'User updated succesfully',
-            'data' => $user1s
+            'data' => $cs
         ], 200);
     }
 
     public function destroy($id)
     {
-        $user1s = User1::find($id);
+        $cs = Cs::find($id);
 
-        if(!$user1s) {
+        if(!$cs) {
             return response()->json([
                 'status' => 404,
                 'message' => 'User not found',
@@ -92,7 +92,7 @@ class CsController extends Controller
             ], 404);
         }
 
-        $user1s->delete();
+        $cs->delete();
 
         return response()->json([
             'status' => 200,

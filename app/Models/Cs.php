@@ -13,4 +13,9 @@ class Cs extends Model
         'contactperson',
         'contactnumber'
     ];
+            // Relasi dengan Customers
+            public function customers()
+            {
+                return $this->belongsTo(User::class);
+            }
 }
